@@ -91,20 +91,20 @@ class App extends Component {
         </div>
         <div>
           <label for="category">Category</label>
-          <select name="category" id="category" value={this.state.category}>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <option value="Kids">Kids</option>
-            <option value="Horror">Horror</option>
-            <option value="Thriller">Thriller</option>
+          <select name="category" id="category">
+            <option value={this.state.category}>Sci-Fi</option>
+            <option value={this.state.category}>Kids</option>
+            <option value={this.state.category}>Horror</option>
+            <option value={this.state.category}>Thriller</option>
           </select>
         </div>
         <div>
           <label for="author">Author</label>
-          <select name="author" id="author" value={this.state.author}>
-            <option value="Aesoph">Aesoph</option>
-            <option value="Lucy Dias">Lucy Dias</option>
-            <option value="James Holland">James Holland</option>
-            <option value="Tom Cruis">Tom Cruis</option>
+          <select name="author" id="author">
+            <option value={this.state.author}>Aesoph</option>
+            <option value={this.state.author}>Lucy Dias</option>
+            <option value={this.state.author}>James Holland</option>
+            <option value={this.state.author}>Tom Cruis</option>
           </select>
         </div>
         {this.state.id ? <button onClick={this.dataSubmit}>Save{this.state.id}</button> : <button onClick={this.dataSubmit}>Add</button>} 
