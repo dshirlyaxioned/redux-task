@@ -65,6 +65,18 @@ class App extends Component {
     }
   }
 
+  nameChange = (e) => {  
+    this.setState({  
+      title: e.target.value  
+    });  
+  } 
+  
+  dateChange = (e) => {  
+    this.setState({  
+      publishDate: e.target.value  
+    });  
+  } 
+
   clearData = () => {
     this.setState(
       {
@@ -81,13 +93,14 @@ class App extends Component {
     return (
       <>
       <div className="input-section">
+        <h2>Book details</h2>
         <div>
           <label for="title">Title</label>
-          <input type="text" value={this.state.title} placeholder="Enter title" id="title"/>
+          <input type="text" onChange={this.nameChange} value={this.state.title} placeholder="Enter title" id="title"/>
         </div>
         <div>
           <label for="date">Publish Date</label>
-          <input type="date" value={this.state.publishDate} id="date"/>
+          <input type="date" onChange={this.dateChange} value={this.state.publishDate} id="date"/>
         </div>
         <div>
           <label for="category">Category</label>
@@ -107,10 +120,11 @@ class App extends Component {
             <option value={this.state.author}>Tom Cruis</option>
           </select>
         </div>
-        {this.state.id ? <button onClick={this.dataSubmit}>Save{this.state.id}</button> : <button onClick={this.dataSubmit}>Add</button>} 
+        {this.state.id ? <button onClick={this.dataSubmit}>Save id={this.state.id}</button> : <button onClick={this.dataSubmit}>Add</button>} 
         <button onClick={this.clearData} className="clear">Clear</button>
       </div>
       <div className="data-display">
+        <h3>Records</h3>
         <table>
           <thead>
             <tr>
@@ -131,10 +145,8 @@ class App extends Component {
                 <td>{data.category}</td>
                 <td>{data.publishDate}</td>
                 <td>{data.author}</td>
-                <td>
-                  <button onClick={() => this.editData(data)}>Edit</button>
-                  <button onClick={() => this.deleteBooks(data.id)}>Delete</button>
-                </td>
+                <td><button onClick={() => this.editData(data)}>Edit</button></td>
+                <td><button onClick={() => this.deleteBooks(data.id)}>Delete</button></td>
               </tr>
             })}
           </tbody>

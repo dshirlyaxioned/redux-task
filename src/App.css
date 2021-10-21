@@ -36,3 +36,61 @@
     transform: rotate(360deg);
   }
 }
+
+.input-section {
+  width: 60%;
+  padding: 70px 0px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.input-section div { margin-bottom: 25px; }
+
+.input-section label {
+  margin-bottom: 15px;
+  display: block;
+  font-size: 24px;
+  font-weight: bold;    
+}
+
+.input-section input,
+.input-section select {
+  width: 35%;
+  padding: 15px 10px;
+  font-size: 20px;
+}
+
+.input-section button {
+  padding: 10px 25px;
+  border-radius: 10px;
+  margin: 20px;
+  font-size: 18px;
+  transition: 1s;
+}
+
+.input-section button:hover {
+  background-color: #282c34;
+  color: #ffffff;
+}
+
+.input-section h2,
+.data-display h3 {
+  font-family: serif;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+.data-display { text-align: center; }
+.data-display table { margin: 0 auto; }
+.data-display td { font-size: 20px; }
+
+.data-display th { 
+  padding: 10px 35px;
+  font-size: 22px;
+}
+
+.data-display td button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+}
