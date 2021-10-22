@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import PropTypes from 'prop-types';
 import {getBooks, addBooks, editBooks, deleteBooks} from './Components/Action';
 import {connect} from 'react-redux';
 
@@ -15,6 +16,14 @@ class App extends Component {
       author: ""
     };
   }
+
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    getBooks: PropTypes.func.isRequired,
+    addBooks: PropTypes.func.isRequired,
+    editBooks: PropTypes.func.isRequired,
+    deleteBooks: PropTypes.func.isRequired
+  };
 
   componentDidMount() {
     this.props.getBooks();
@@ -31,6 +40,7 @@ class App extends Component {
       };
 
       this.props.addBooks(newBook);
+      alert('Successfully data added..!!');
     } else if (this.state.title && this.state.category && this.state.publishDate && this.state.author && this.state.id) {
       const updateData = {
         id: this.state.id,
@@ -77,6 +87,18 @@ class App extends Component {
     });  
   } 
 
+  categoryChange = (e) => {  
+    this.setState({  
+      category: e.target.value  
+    });  
+  } 
+
+  authorChange = (e) => {  
+    this.setState({  
+      author: e.target.value  
+    });  
+  } 
+
   clearData = () => {
     this.setState(
       {
@@ -95,33 +117,23 @@ class App extends Component {
       <div className="input-section">
         <h2>Book details</h2>
         <div>
-          <label for="title">Title</label>
+          <label htmlFor="title">Title</label>
           <input type="text" onChange={this.nameChange} value={this.state.title} placeholder="Enter title" id="title"/>
         </div>
         <div>
-          <label for="date">Publish Date</label>
+          <label htmlFor="date">Publish Date</label>
           <input type="date" onChange={this.dateChange} value={this.state.publishDate} id="date"/>
         </div>
         <div>
-          <label for="category">Category</label>
-          <select name="category" id="category">
-            <option value={this.state.category}>Sci-Fi</option>
-            <option value={this.state.category}>Kids</option>
-            <option value={this.state.category}>Horror</option>
-            <option value={this.state.category}>Thriller</option>
-          </select>
+          <label htmlFor="category">Category</label>
+          <input type="text" onChange={this.categoryChange} value={this.state.category} placeholder="Enter book category" id="category"/>
         </div>
         <div>
-          <label for="author">Author</label>
-          <select name="author" id="author">
-            <option value={this.state.author}>Aesoph</option>
-            <option value={this.state.author}>Lucy Dias</option>
-            <option value={this.state.author}>James Holland</option>
-            <option value={this.state.author}>Tom Cruis</option>
-          </select>
+          <label htmlFor="author">Author</label>
+          <input type="text" onChange={this.authorChange} value={this.state.author}  placeholder="Enter author name" id="author"/>
         </div>
         {this.state.id ? <button onClick={this.dataSubmit}>Save id={this.state.id}</button> : <button onClick={this.dataSubmit}>Add</button>} 
-        <button onClick={this.clearData} className="clear">Clear</button>
+        <button onClick={this.clearData}>Clear</button>
       </div>
       <div className="data-display">
         <h3>Records</h3>
@@ -138,15 +150,15 @@ class App extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.books && this.props.books.map((data, index) => {
+            {this.props.books && this.props.books.map((data1, index) => {
               return <tr key={index + 1}>
                 <td>{(index + 1)}</td>
-                <td>{data.title}</td>
-                <td>{data.category}</td>
-                <td>{data.publishDate}</td>
-                <td>{data.author}</td>
-                <td><button onClick={() => this.editData(data)}>Edit</button></td>
-                <td><button onClick={() => this.deleteBooks(data.id)}>Delete</button></td>
+                <td>{data1.title}</td>
+                <td>{data1.category}</td>
+                <td>{data1.publishDate}</td>
+                <td>{data1.author}</td>
+                <td><button onClick={() => this.editData(data1)}>Edit</button></td>
+                <td><button onClick={() => this.deleteBooks(data1.id)}>Delete</button></td>
               </tr>
             })}
           </tbody>
@@ -157,7 +169,7 @@ class App extends Component {
   }
 }
 
-const stateChange = state => (
+const mapStateToProps = state => (
   {
     books: state.books
   }
@@ -165,4 +177,4 @@ const stateChange = state => (
 
 
 
-export default connect(stateChange, { getBooks, addBooks, editBooks, deleteBooks }) (App);
+export default connect(mapStateToProps, { getBooks, addBooks, editBooks, deleteBooks }) (App);

@@ -24,8 +24,8 @@ const reducer = (state = data, action) => {
                 ...state,
                 books: state.books.filter(item => item.id !== action.payload)  
             };
-     default:
-         return state;       
+        default:
+            return state;       
     }
 }
 

@@ -4,7 +4,7 @@ const data = {
             id: 1,
             title: "Aesoph fables",
             category: "Kids story",
-            publishDate: "23-09-2016",
+            publishDate: "2016-09-23",
             author: "Aesoph"
         }
     ]
