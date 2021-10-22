@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import PropTypes from 'prop-types';
 import {getBooks, addBooks, editBooks, deleteBooks} from './Components/Action';
 import {connect} from 'react-redux';
 
@@ -16,15 +15,7 @@ class App extends Component {
       author: ""
     };
   }
-
-  static propTypes = {
-    books: PropTypes.array.isRequired,
-    getBooks: PropTypes.func.isRequired,
-    addBooks: PropTypes.func.isRequired,
-    editBooks: PropTypes.func.isRequired,
-    deleteBooks: PropTypes.func.isRequired
-  };
-
+  
   componentDidMount() {
     this.props.getBooks();
   }
